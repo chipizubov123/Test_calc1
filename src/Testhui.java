@@ -16,7 +16,7 @@ public class Testhui {
             "XCI", "XCII", "XCIII", "XCIV", "XCV", "XCVI", "XCVII", "XCVIII", "XCIX", "C"};
 
     static String StringToArab() {
-        System.out.println("введите выражение");
+        System.out.println("Введите выражение");
         String s1 = String.valueOf(s.nextLine()).replace(" ", "");
         char[] c1 = s1.toCharArray();
         int charOperation = 2;
@@ -29,13 +29,13 @@ public class Testhui {
         String Rom;
         for (String string : r) {
             Rom = string;
-            if (Rom.equals(s1.substring(0, charOperation)) || Rom.equals(s1.substring(charOperation + 1, c1.length))) {
+            if (Rom.equals(s1.substring(0, charOperation)) && Rom.equals(s1.substring(charOperation + 1, c1.length))) {
                 value1 = StringToRome(s1.substring(0, charOperation));
                 value2 = StringToRome(s1.substring(charOperation + 1, c1.length));
                 if (c1[charOperation] == ('*')) {
                     //return ((Integer)(value1 * value2)).toString();
                     return Roman(value1 * value2);
-                } else if (c1[charOperation] == ('/')) {
+                } else if (c1[charOperation] == ('/')|| c1[charOperation] == (':')) {
                     return Roman(value1 / value2);
                 } else if (c1[charOperation] == ('+')) {
                     return Roman(value1 + value2);
@@ -102,7 +102,6 @@ public class Testhui {
 
         } catch (Exception e) {
             System.out.println("Введено неверное выражение, попробуйте еще раз");
-            StringToArab();
         }
         return 0;
     }
@@ -110,6 +109,12 @@ public class Testhui {
 
     public static void main(String[] args) {
 
-        System.out.println("Результат выражения: " + StringToArab());
+        try {
+            do {
+                System.out.println("Результат выражения: " + StringToArab());
+            } while (true);
+        } catch (Exception e) {
+            System.out.println("Неверное выражение");
+        }
     }
 }
